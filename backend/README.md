@@ -290,32 +290,7 @@ curl -X POST http://localhost:8000/carrito \
 
 # Flujo completo de datos
 
-```
-Frontend (React)                     Backend (FastAPI)                 Mercado Pago
-localhost:5173                       localhost:8000                    api.mercadopago.com
-       │                                   │                                │
-       │   POST /carrito                   │                                │
-       │   { items: [...], user: "x" }     │                                │
-       │──────────────────────────────────→│                                │
-       │                                   │                                │
-       │                                   │   Valida datos con Pydantic    │
-       │                                   │       (Carrito, ItemCarrito)   │
-       │                                   │                                │
-       │                                   │   SDK preference().create()    │
-       │                                   │──────────────────────────────→│
-       │                                   │                                │
-       │                                   │   ←── { id, init_point,       │
-       │                                   │         sandbox_init_point }   │
-       │                                   │                                │
-       │   ←── { id, init_point,           │                                │
-       │         sandbox_init_point }      │                                │
-       │                                   │                                │
-       │   Redirige a sandbox_init_point   │                                │
-       │──────────────────────────────────────────────────────────────────→│
-       │                                   │                                │
-       │                                   │          Usuario paga          │
-       │                                   │        en checkout de MP       │
-```
+![grafico backend](../images-md/readme-backend.png)
 
 # Preguntas posibles
 

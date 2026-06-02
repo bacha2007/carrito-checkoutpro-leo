@@ -2,21 +2,7 @@
 
 Aplicación web de carrito de compras que conecta un frontend en React con un backend en FastAPI para procesar pagos a través de Mercado Pago. Los productos se obtienen de una API pública y el carrito se mantiene persistente en localStorage.
 
-```
-┌──────────────┐      POST /carrito      ┌──────────────┐      SDK / HTTP      ┌────────────────┐
-│  Frontend    │ ──────────────────────→  │   Backend    │ ──────────────────→ │ Mercado Pago   │
-│  React + Vite│ ←────────────────────── │  FastAPI     │ ←────────────────── │ API            │
-│  localhost:   │    init_point /          │  localhost:  │    preference_id    │                │
-│  5173         │    sandbox_init_point    │  8000        │                     │                │
-└──────────────┘                         └──────────────┘                     └────────────────┘
-       │                                                                             │
-       │ GET /products                                                                │
-       ▼                                                                             ▼
-┌──────────────┐                                                            El usuario es
-│ DummyJSON    │                                                            redirigido a
-│ API pública  │                                                            la URL de pago
-└──────────────┘                                                            (sandbox)
-```
+![grafico](./images-md/readme-main.png)
 
 ## Componentes del proyecto
 
