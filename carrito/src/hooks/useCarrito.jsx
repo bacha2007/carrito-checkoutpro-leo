@@ -12,7 +12,6 @@ export default function useCart() {
     }, [cart])
 
     const addToCart = (product) => {
-
         setCart(prevCart => {
             const matchProduct = prevCart.find(element => element.id === product.id)
             if (matchProduct) {
@@ -27,8 +26,18 @@ export default function useCart() {
     }
 
     const reduceQuantity = (product) => {
-        setCart(prevCart => prevCart.map(element => element.id === product.id ? { ...product, cantidad: product.cantidad - 1 >= 0 ? product.cantidad - 1 : 0 } : element))
-    }
+        setCart(prevCart => {
+            const existing = prevCart.find(item => item.id === product.id);
+            if (!existing || existing.cantidad <= 1) {
+                return prevCart; // No hacer nada si la cantidad es 1 o menos
+            }
+            return prevCart.map(item =>
+                item.id === product.id
+                    ? { ...item, cantidad: item.cantidad - 1 }
+                    : item
+            );
+        });
+    };
 
     const increaseQuantity = (product) => {
         setCart(prevCart => prevCart.map(element => element.id === product.id ? { ...product, cantidad: product.cantidad + 1 } : element))
@@ -41,5 +50,4 @@ export default function useCart() {
     return {
         cart, addToCart, removeFromCart, reduceQuantity, totalCart, increaseQuantity
     }
-
 }
