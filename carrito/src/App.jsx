@@ -17,7 +17,7 @@ function App() {
   const [estadoPago, setEstadoPago] = useState(null)
   const [user, setUser] = useState(localStorage.getItem("user"))
   const [refreshHistorial, setRefreshHistorial] = useState(0)
-  const [loading, setLoading] = useState(false)  // 🔥 Para el estado del botón
+  const [loading, setLoading] = useState(false)  // Estado para manejar el loading durante la compra
 
   useEffect(() => {
     const path = window.location.pathname
@@ -48,7 +48,7 @@ function App() {
     product.title.toLowerCase().includes(busqueda.toLowerCase())
   )
 
-  // 🔥 Función para manejar la compra con loading
+  // Función para manejar la compra con loading
   const handleConfirmarCompra = async () => {
     setLoading(true)
     try {
@@ -86,14 +86,14 @@ function App() {
 
           {estadoPago === 'exitoso' && (
             <div className="alert success" style={{ textAlign: 'center', padding: '30px' }}>
-              <div style={{ fontSize: '60px' }}>✅</div>
+              <div style={{ fontSize: '60px' }}></div>
               <h2 style={{ margin: '10px 0 5px' }}>¡Pago aprobado!</h2>
               <p>Gracias por tu compra. Serás redirigido en 5 segundos...</p>
             </div>
           )}
           {estadoPago === 'error' && (
             <div className="alert error" style={{ textAlign: 'center', padding: '30px' }}>
-              <div style={{ fontSize: '60px' }}>❌</div>
+              <div style={{ fontSize: '60px' }}></div>
               <h2 style={{ margin: '10px 0 5px' }}>Hubo un problema con tu pago</h2>
               <p>Serás redirigido en 5 segundos...</p>
             </div>
